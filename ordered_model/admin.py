@@ -52,7 +52,10 @@ class OrderedModelAdmin(admin.ModelAdmin):
 
     def move_view(self, request, object_id, direction):
         cl = self._get_changelist(request)
-        qs = cl.get_query_set(request)
+        try:
+            qs = cl.get_queryset(request)
+        except AttributeError:
+            qs = cl.get_query_set(request)
 
         obj = get_object_or_404(self.model, pk=unquote(object_id))
         obj.move(direction, qs)
