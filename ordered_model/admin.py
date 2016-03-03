@@ -47,15 +47,7 @@ class OrderedModelAdmin(admin.ModelAdmin):
         return super(OrderedModelAdmin, self).changelist_view(request, extra_context)
 
     def move_view(self, request, object_id, direction):
-<<<<<<< HEAD
-        cl = self._get_changelist(request)
-        try:
-            qs = cl.get_queryset(request)
-        except AttributeError:
-            qs = cl.get_query_set(request)
-=======
         qs = self._get_changelist(request).get_queryset(request)
->>>>>>> 1fc57698e0d9aa0418a3bbba62c08659106683bb
 
         obj = get_object_or_404(self.model, pk=unquote(object_id))
         obj.move(direction, qs)
