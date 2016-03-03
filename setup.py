@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from distutils.core import setup
- 
+VERSION = "0.4.1"
 setup(
     name='django-ordered-model',
     version='0.4.1',
