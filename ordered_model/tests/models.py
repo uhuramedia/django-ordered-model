@@ -1,5 +1,5 @@
 from django.db import models
-from ordered_model.models import OrderedModel
+from ordered_model.models import OrderedModel, OrderedModelBase
 
 
 class Item(OrderedModel):
@@ -24,3 +24,31 @@ class Answer(OrderedModel):
 class CustomItem(OrderedModel):
     id = models.CharField(max_length=100, primary_key=True)
     name = models.CharField(max_length=100)
+
+
+class CustomOrderFieldModel(OrderedModelBase):
+    sort_order = models.PositiveIntegerField(editable=False, db_index=True)
+    name = models.CharField(max_length=100)
+    order_field_name = 'sort_order'
+
+    class Meta:
+        ordering = ('sort_order',)
+
+
+class Topping(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class Pizza(models.Model):
+    name = models.CharField(max_length=100)
+    toppings = models.ManyToManyField(Topping, through='PizzaToppingsThroughModel')
+
+
+class PizzaToppingsThroughModel(OrderedModel):
+    pizza = models.ForeignKey(Pizza)
+    topping = models.ForeignKey(Topping)
+    order_with_respect_to = 'pizza'
+
+    class Meta:
+        ordering = ('pizza', 'order')
+

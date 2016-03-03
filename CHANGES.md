@@ -1,6 +1,31 @@
 Change log
 ==========
 
+1.2.0 – TBA
+
+ - Remove support for Django < 1.8.
+
+1.1.0 – 2016-01-15
+------------------
+
+ - Add support for many-to-many models.
+ - Add Italian translations.
+
+1.0.0 – 2015-11-24
+------------------
+
+1.0, because why not. Seems to be working alright for everyone. Some little things in this release:
+
+ - Add support for custom order field by inheriting from `OrderedModelBase` and setting `order_field_name`.
+ - Add support for Python 3.
+ - Drop support for Django 1.4.
+
+0.4.2 – 2015-06-02
+------------------
+
+ - Fix admin buttons not working with custom primary keys.
+ - Fix admin using deprecated `get_query_set` method.
+
 0.4.1 – 2015-04-06
 ------------------
 
